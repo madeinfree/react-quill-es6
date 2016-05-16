@@ -58,20 +58,47 @@ class ReactQuillES6 extends Component {
     }
   }
 
-  componentWillReceiveProps() {
+  componentWillReceiveProps(nextProps) {
+    const editor = this.state.editor;
+    if (editor) {
+      if ('value' in nextProps) {
+        if (nextProps.value !== this.getEditorContents()) {
+          this.getEditorContents(editor, nextProps.value);
+        }
+      }
+      if ('readOnly' in nextProps) {
+        if (nextProps.readOnly !== this.props.readOnly) {
+          this.setEditorReadOnly(editor, nextProps.readOnly);
+        }
+      }
+    }
   }
 
   componentDidMount() {
     const editor = this.createEditor(this.getEditorElement(), this.getEditorConfig());
   }
 
-  componentWillUnmount() {}
+  componentWillUnmount() {
+    this.destroyEditor(this.state.editor);
+  }
 
-  shouldComponentUpdate() { return true }
+  shouldComponentUpdate(nextProps, nextState) {
+    for(let key in this.dirtyProps) {
+      let prop = this.dirtyProps[key];
+      if(nextProps[key] !== this.props[key]) {
+        return true;
+      }
+    }
+    false;
+  }
 
-  componentWillUpdate() {}
+  componentWillUpdate() {
+    this.componentWillUnmount();
+  }
 
-  componentDidUpdate() {}
+  componentDidUpdate() {
+    this.componentDidMount();
+  }
 
   setCustomFormats() {
     if (!this.props.formats) {
