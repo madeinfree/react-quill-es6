@@ -8,22 +8,22 @@ class ReactQuillES6 extends Component {
 
   static propTypes = {
     id: PropTypes.string,
-		className: PropTypes.string,
-		style: PropTypes.object,
-		value: PropTypes.string,
-		defaultValue: PropTypes.string,
-		readOnly: PropTypes.bool,
-		modules: PropTypes.object,
-		toolbar: PropTypes.oneOfType([ PropTypes.array, PropTypes.oneOf([false]) ]),
-		formats: PropTypes.array,
-		styles: PropTypes.oneOfType([ PropTypes.object, PropTypes.oneOf([false]) ]),
-		theme: PropTypes.string,
-		pollInterval: PropTypes.number,
-		onKeyPress: PropTypes.func,
-		onKeyDown: PropTypes.func,
-		onKeyUp: PropTypes.func,
-		onChange: PropTypes.func,
-		onChangeSelection: PropTypes.func
+    className: PropTypes.string,
+    style: PropTypes.object,
+    value: PropTypes.string,
+    defaultValue: PropTypes.string,
+    readOnly: PropTypes.bool,
+    modules: PropTypes.object,
+    toolbar: PropTypes.oneOfType([ PropTypes.array, PropTypes.oneOf([false]) ]),
+    formats: PropTypes.array,
+    styles: PropTypes.oneOfType([ PropTypes.object, PropTypes.oneOf([false]) ]),
+    theme: PropTypes.string,
+    pollInterval: PropTypes.number,
+    onKeyPress: PropTypes.func,
+    onKeyDown: PropTypes.func,
+    onKeyUp: PropTypes.func,
+    onChange: PropTypes.func,
+    onChangeSelection: PropTypes.func
   }
 
   static defaultProps = {
@@ -44,13 +44,13 @@ class ReactQuillES6 extends Component {
 
     this.dirtyProps = [
       'id',
-  		'className',
-  		'modules',
-  		'toolbar',
-  		'formats',
-  		'styles',
-  		'theme',
-  		'pollInterval'
+      'className',
+      'modules',
+      'toolbar',
+      'formats',
+      'styles',
+      'theme',
+      'pollInterval'
     ]
 
     this.state = {
@@ -89,11 +89,11 @@ class ReactQuillES6 extends Component {
   }
 
   getEditorContents() {
-		return this.state.value;
+    return this.state.value;
 	}
 
   getEditorElement() {
-		return ReactDOM.findDOMNode(this.refs.editor);
+    return ReactDOM.findDOMNode(this.refs.editor);
 	}
 
   getEditorConfig() {
@@ -142,9 +142,9 @@ class ReactQuillES6 extends Component {
         style={ this.props.style }
         className={ ['quill'].concat(this.props.className).join(' ') }
         onKeyPress={ this.props.onKeyPress }
-  			onKeyDown={ this.props.onKeyDown }
-  			onKeyUp={ this.props.onKeyUp }
-  			onChange={ this.preventDefault }
+        onKeyDown={ this.props.onKeyDown }
+        onKeyUp={ this.props.onKeyUp }
+        onChange={ this.preventDefault }
       >
         { this.renderContents() }
       </div>

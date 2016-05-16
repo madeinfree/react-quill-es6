@@ -23,46 +23,46 @@ const defaultItems = [
 
 	{ label:'Formats', type:'group', items: [
 		{ label:'Font', type:'font', items: [
-			{ label:'Sans Serif',  value:'sans-serif', selected:true },
-			{ label:'Serif',       value:'serif' },
-			{ label:'Monospace',   value:'monospace' }
+      { label:'Sans Serif',  value:'sans-serif', selected:true },
+      { label:'Serif',       value:'serif' },
+      { label:'Monospace',   value:'monospace' }
 		]},
 		{ type:'separator' },
 		{ label:'Size', type:'size', items: [
-			{ label:'Small',  value:'10px' },
-			{ label:'Normal', value:'13px', selected:true },
-			{ label:'Large',  value:'18px' },
-			{ label:'Huge',   value:'32px' }
+      { label:'Small',  value:'10px' },
+      { label:'Normal', value:'13px', selected:true },
+      { label:'Large',  value:'18px' },
+      { label:'Huge',   value:'32px' }
 		]},
 		{ type:'separator' },
 		{ label:'Alignment', type:'align', items: [
-			{ label:'', value:'left', selected:true },
-			{ label:'', value:'center' },
-			{ label:'', value:'right' },
-			{ label:'', value:'justify' }
+      { label:'', value:'left', selected:true },
+      { label:'', value:'center' },
+      { label:'', value:'right' },
+      { label:'', value:'justify' }
 		]}
 	]},
 
 	{ label:'Text', type:'group', items: [
-		{ type:'bold', label:'Bold' },
-		{ type:'italic', label:'Italic' },
-		{ type:'strike', label:'Strike' },
-		{ type:'underline', label:'Underline' },
-		{ type:'separator' },
-		{ type:'color', label:'Color', items:defaultColors },
-		{ type:'background', label:'Background color', items:defaultColors },
-		{ type:'separator' },
-		{ type:'link', label:'Link' }
+    { type:'bold', label:'Bold' },
+    { type:'italic', label:'Italic' },
+    { type:'strike', label:'Strike' },
+    { type:'underline', label:'Underline' },
+    { type:'separator' },
+    { type:'color', label:'Color', items:defaultColors },
+    { type:'background', label:'Background color', items:defaultColors },
+    { type:'separator' },
+    { type:'link', label:'Link' }
 	]},
 
 	{ label:'Blocks', type:'group', items: [
-		{ type:'bullet', label:'Bullet' },
-		{ type:'separator' },
-		{ type:'list', label:'List' }
+    { type:'bullet', label:'Bullet' },
+    { type:'separator' },
+    { type:'list', label:'List' }
 	]},
 
 	{ label:'Blocks', type:'group', items: [
-		{ type:'image', label:'Image' }
+    { type:'image', label:'Image' }
 	]}
 
 ];
@@ -105,16 +105,16 @@ export default class QuillToolBar extends Component {
 
     this.renderChoices = (item, key) => {
   		var attrs = {
-  			key: item.label || key,
-  			title: item.label,
-  			className: 'ql-'+item.type
+        key: item.label || key,
+        title: item.label,
+        className: 'ql-'+item.type
   		};
   		var self = this;
   		var choiceItems = item.items.map(function(item, key) {
-  			if (item.selected) {
-  				attrs.defaultValue = item.value;
-  			}
-  			return self.renderChoiceItem(item, key);
+        if (item.selected) {
+          attrs.defaultValue = item.value;
+        }
+        return self.renderChoiceItem(item, key);
   		})
       return (
         <select
@@ -139,29 +139,29 @@ export default class QuillToolBar extends Component {
 
     this.renderItem = (item, key) => {
   		switch (item.type) {
-  			case 'separator':
-  				return this.renderSeparator(key);
-  			case 'group':
-  				return this.renderGroup(item, key);
-  			case 'font':
-  			case 'align':
-  			case 'size':
-  			case 'color':
-  			case 'background':
-  				return this.renderChoices(item, key);
-  			default:
-  				return this.renderAction(item, key);
+        case 'separator':
+          return this.renderSeparator(key);
+        case 'group':
+          return this.renderGroup(item, key);
+        case 'font':
+        case 'align':
+        case 'size':
+        case 'color':
+        case 'background':
+          return this.renderChoices(item, key);
+        default:
+          return this.renderAction(item, key);
   		}
   	}
 
     this.renderAction = (item, key) => {
-  		return React.DOM.span({
-  			key: item.label || item.value || key,
-  			className: 'ql-format-button ql-'+item.type,
-  			title: item.label },
-  			item.children
-  		);
-	   }
+      return React.DOM.span({
+        key: item.label || item.value || key,
+        className: 'ql-format-button ql-'+item.type,
+        title: item.label },
+        item.children
+      );
+    }
   }
 
   static propTypes = {

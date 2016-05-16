@@ -8,19 +8,19 @@ const mixins = {
     editor.on('text-change', (delta, source) => {
       if (mixins.onEditorChange) {
         mixins.onEditorChange(
-					editor.getHTML(), delta, source,
-					unprivilegedEditor
-				);
+          editor.getHTML(), delta, source,
+          unprivilegedEditor
+        );
       }
     })
 
     editor.on('selection-change', (range, source) => {
       if (mixins.onEditorChangeSelection) {
-				mixins.onEditorChangeSelection(
-					range, source,
-					unprivilegedEditor
-				);
-			}
+        mixins.onEditorChangeSelection(
+          range, source,
+          unprivilegedEditor
+        );
+      }
     })
   },
 
@@ -50,12 +50,12 @@ const mixins = {
   makeUnprivilegedEditor: (editor) => {
     const e = editor;
     return {
-			getLength:    () => { e.getLength.apply(e, arguments); },
-			getText:      () => { e.getText.apply(e, arguments); },
-			getHTML:      () => { e.getHTML.apply(e, arguments); },
-			getContents:  () => { e.getContents.apply(e, arguments); },
-			getSelection: () => { e.getSelection.apply(e, arguments); },
-			getBounds:    () => { e.getBounds.apply(e, arguments); },
+      getLength: () => { e.getLength.apply(e, arguments); },
+      getText: () => { e.getText.apply(e, arguments); },
+      getHTML: () => { e.getHTML.apply(e, arguments); },
+      getContents: () => { e.getContents.apply(e, arguments); },
+      getSelection: () => { e.getSelection.apply(e, arguments); },
+      getBounds: () => { e.getBounds.apply(e, arguments); },
 		};
   },
 
